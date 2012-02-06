@@ -23,10 +23,12 @@ class Php < Formula
   depends_on 'jpeg'
   depends_on 'mcrypt'
   depends_on 'gmp' if ARGV.include? '--with-gmp'
+  depends_on 'gd' if ARGV.include? '--with-gd'
 
   depends_on 'libevent' if ARGV.include? '--with-fpm'
   depends_on 'freetds'if ARGV.include? '--with-mssql'
   depends_on 'icu4c' if ARGV.include? '--with-intl'
+  depends_on 'curl' if ARGV.include? '--with-curl'
 
   if ARGV.include? '--with-mysql' and ARGV.include? '--with-mariadb'
     raise "Cannot specify more than one MySQL variant to build against."
@@ -43,6 +45,8 @@ class Php < Formula
   def options
    [
      ['--with-mysql', 'Include MySQL support'],
+     ['--with-gd', 'Include GD support'],
+     ['--with-curl', 'Include curl support'],
      ['--with-mariadb', 'Include MariaDB support'],
      ['--with-pgsql', 'Include PostgreSQL support'],
      ['--with-mssql', 'Include MSSQL-DB support'],
